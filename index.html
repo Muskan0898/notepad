@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="div">
+        <h2>Notepad</h2>
+        <textarea id="textArea" class="notepad"></textarea><br>
+        <button id="saveButton">Save</button>
+        <button id="clearButton">Clear</button>
+    </div>
+
+    <script>
+        // Retrieve saved text from localStorage
+        const textArea = document.getElementById('textArea');
+        const saveButton = document.getElementById('saveButton');
+        const clearButton = document.getElementById('clearButton');
+
+        // Load saved text from localStorage
+        if (localStorage.getItem('notepadText')) {
+            textArea.value = localStorage.getItem('notepadText');
+        }
+
+        // Save text to localStorage when the "Save" button is clicked
+        saveButton.addEventListener('click', () => {
+            const textToSave = textArea.value;
+            localStorage.setItem('notepadText', textToSave);
+        });
+
+        // Clear text in the notepad and localStorage when the "Clear" button is clicked
+        clearButton.addEventListener('click', () => {
+            textArea.value = '';
+            localStorage.removeItem('notepadText');
+        });
+    </script>
+</body>
+</html>
